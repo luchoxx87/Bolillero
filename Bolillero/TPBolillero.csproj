@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bolillero.cs" />
+    <Compile Include="ILogicaSimulacion.cs" />
+    <Compile Include="LogicaConOrden.cs" />
+    <Compile Include="LogicaSinOrden.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Simulacion.cs" />

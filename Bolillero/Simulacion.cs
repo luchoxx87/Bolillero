@@ -8,9 +8,11 @@ namespace TPBolillero
 {
     public class Simulacion
     {
+        public ILogicaSimulacion LogicaSimulacion { get; set; }
         public static bool acierta(Bolillero bolillero, List<Byte> lista)
         {
-            return lista.All(numero => numero == bolillero.sacarBolillaAlAzar());            
+            //return lista.All(numero => numero == bolillero.sacarBolillaAlAzar());
+            return this.LogicaSimulacion.acierta(bolillero, lista);
         }
 
         public static ulong cantidadDeVecesQueGano(Bolillero bolillero, List<Byte> lista, ulong cantidadDeSimulaciones)
@@ -37,7 +39,7 @@ namespace TPBolillero
 
         private static void asignarTareas(Bolillero bolillero, Task<ulong>[] hilos, List<Byte> lista, ulong cantidadDeSimulaciones)
         {
-            //
+            //TODO
         }
 
     }
