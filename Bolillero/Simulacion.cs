@@ -8,26 +8,25 @@ namespace TPBolillero
 {
     public class Simulacion
     {
-        public ILogicaSimulacion LogicaSimulacion { get; set; }
-        public static bool acierta(Bolillero bolillero, List<Byte> lista)
+        public static bool acierta(Bolillero bolillero, List<Byte> lista, ILogicaSimulacion LogicaSimulacion)
         {
             //return lista.All(numero => numero == bolillero.sacarBolillaAlAzar());
-            return this.LogicaSimulacion.acierta(bolillero, lista);
+            return LogicaSimulacion.acierta(bolillero, lista);
         }
 
-        public static ulong cantidadDeVecesQueGano(Bolillero bolillero, List<Byte> lista, ulong cantidadDeSimulaciones)
+        public static ulong cantidadDeVecesQueGano(Bolillero bolillero, List<Byte> lista, ulong cantidadDeSimulaciones, ILogicaSimulacion LogicaSimulacion)
         {
             ulong cont = 0;
-            for (ulong i = 0; i < cantidadDeSimulaciones; i++, incrementarContadorSiEsNecesario(bolillero, lista, ref cont)) ;
+            for (ulong i = 0; i < cantidadDeSimulaciones; i++, incrementarContadorSiEsNecesario(bolillero, lista, ref cont, ILogicaSimulacion LogicaSimulacion)) ;
             return cont;
         }
 
-        private static void incrementarContadorSiEsNecesario(Bolillero bolillero, List<Byte> lista, ref ulong cont)
+        private static void incrementarContadorSiEsNecesario(Bolillero bolillero, List<Byte> lista, ref ulong cont, ILogicaSimulacion LogicaSimulacion)
         {
             //TODO
         }
 
-        public static ulong cantidadDeVecesQueGano(Bolillero bolillero, List<Byte> lista, ulong cantidadDeSimulaciones, byte cantHilos)
+        public static ulong cantidadDeVecesQueGano(Bolillero bolillero, List<Byte> lista, ulong cantidadDeSimulaciones, ILogicaSimulacion LogicaSimulacion, byte cantHilos)
         {
             //TODO
         }

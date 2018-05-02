@@ -7,7 +7,7 @@ namespace TPBolillero
     {
         public bool acierta(Bolillero bolillero, List<byte> lista)
         {
-            throw new NotImplementedException();
+            return lista.TrueForAll(numero => numero == bolillero.sacarBolillaAlAzar());
         }
     }
 }
