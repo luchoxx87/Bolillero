@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TPBolillero
 {
-    class LogicaSinOrden: ILogicaSimulacion
+    public class LogicaSinOrden: ILogicaSimulacion
     {
         public bool acierta(Bolillero bolillero, List<byte> lista)
         {

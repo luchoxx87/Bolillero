@@ -12,14 +12,18 @@ namespace PruebaBolillero
         Bolillero bolillero;
         ulong cantidadSimulaciones;
         List<Byte> jugada;
+        Simulacion simulacion;
+        LogicaConOrden logicaOrden;
 
         [TestInitialize]
         public void iniciar()
         {
             cantBolillas = 10;
             bolillero = new Bolillero(cantBolillas);
-            cantidadSimulaciones = 5000;
-            jugada = new List<byte> { 0 };            
+            cantidadSimulaciones = 500000;
+            jugada = new List<byte> { 0 };
+            simulacion = new Simulacion();
+            logicaOrden = new LogicaConOrden();
         }
 
         [TestMethod]
@@ -45,17 +49,21 @@ namespace PruebaBolillero
             Assert.AreEqual(otroBolillero.BolillasAdentro.Count, bolillero.BolillasAdentro.Count);
             Assert.IsTrue(otroBolillero.BolillasAdentro.TrueForAll(bolilla => bolillero.BolillasAdentro.Contains(bolilla)));
         }
+
         [TestMethod]
-        public void cantSimulacionesSinHilo()
+        public void probandoSimulacionSinHilosConOrden()
         {
-            ulong resultado = Simulacion.cantidadDeVecesQueGano(bolillero, jugada, cantidadSimulaciones);
-            Assert.AreEqual(cantidadSimulaciones/10 , resultado);
+            simulacion.LogicaSimulacion = logicaOrden;
+            simulacion.cantidadVecesQueGano(bolillero, jugada, cantidadSimulaciones);
+            Assert.AreEqual(10.0, simulacion.PorcentajeAcierto, 0.01);
         }
 
         [TestMethod]
-        public void cantSimulacionesConHilo()
+        public void probandoSimulacionConHilosConOrden()
         {
-            //TODO
+            simulacion.LogicaSimulacion = logicaOrden;
+            Assert.AreEqual(cantidadSimulaciones / 10, simulacion.cantidadVecesQueGano(bolillero, jugada, cantidadSimulaciones, 4));
         }
+
     }
 }
